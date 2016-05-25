@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Todo.Mobile.Views.UpdateTodoItemView">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="StartAndExpand">
+      <Label Text="Title" />
+      <Entry Text="{Binding Path=Item.Title}" x:Name="nameEntry" Placeholder="task title" />
+
+      <Label Text="Completed" />
+      <Switch IsToggled="{Binding Path=Item.Completed}" x:Name="DoneSwitch" />
+
+      <Button Text="Save" Command="{Binding SaveCommand}" />
+
+      <Button Text="Delete" Command="{Binding DeleteCommand}" />
+
+      <Button Text="Cancel" Command="{Binding CancelCommand}" />
+
+
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

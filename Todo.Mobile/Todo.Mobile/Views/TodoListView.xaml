@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bb="clr-namespace:Todo.Mobile.Common.Behaviors"
+             x:Class="Todo.Mobile.Views.TodoListView">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <OnPlatform x:Key="Priority1" x:TypeArguments="x:Int32"
+         iOS="0"
+         Android="1"
+         WinPhone="1" />
+      <OnPlatform x:Key="Priority2" x:TypeArguments="x:Int32"
+         iOS="1"
+         Android="0"
+         WinPhone="0" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Command="{Binding AddTodoItem}" Order="Primary" Priority="{StaticResource Priority1}" Icon="ApplicationBar.Add.png"/>
+  </ContentPage.ToolbarItems>
+  <ListView x:Name="listView" 
+            ItemsSource="{Binding List.TodoItems}" 
+            SelectedItem="{Binding SelectedTodoItem}"
+            bb:ListViewItemTappedCommandBehavior.Command="{Binding SelectedItemTapped}"
+            >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout Padding="20,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+            <Label Text="{Binding Title}" YAlign="Center" />
+            <Image Source="check.png" IsVisible="{Binding Completed}" />
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+</ContentPage>
